@@ -102,6 +102,36 @@ class _HomeSate extends State<Home> {
                 ),
               ),
             ),
+
+            SizedBox(height: 20),
+            Container(
+              color: Colors.blue,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("Showalert");
+                },
+                child: Text(
+                  "Go to showDialog Page rout ",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20),
+            Container(
+              color: Colors.blue,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("Bottomsheet");
+                },
+                child: Text(
+                  "Go to Bottomsheet Page rout ",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
           ],
         ),
       ),

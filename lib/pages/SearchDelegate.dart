@@ -24,7 +24,7 @@ class _searchSate extends State<search> {
 }
 
 class CustomSearch extends SearchDelegate {
-  List username = [
+  List<String> username = [
     "yusra",
     "ahmed",
     "ali",
@@ -34,6 +34,8 @@ class CustomSearch extends SearchDelegate {
     "hanan",
     "essam",
   ];
+
+  List? filterListe;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -59,21 +61,51 @@ class CustomSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text("");
+    return Text("Resul $query");
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return ListView.builder(
-      itemCount: username.length,
-      itemBuilder: (context, i) {
-        return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Text("${username[i]}", style: TextStyle(fontSize: 16)),
-          ),
-        );
-      },
-    );
+    if (query.isEmpty) {
+      return ListView.builder(
+        itemCount: username.length,
+        itemBuilder: (context, i) {
+          return InkWell(
+            onTap: () {
+              showResults(context);
+            },
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text("${username[i]}", style: TextStyle(fontSize: 16)),
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      filterListe = username
+          .where((element) => element.contains(query))
+          .toList();
+      return ListView.builder(
+        itemCount: filterListe!.length,
+        itemBuilder: (context, i) {
+          return InkWell(
+            onTap: () {
+              showResults(context);
+            },
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Text(
+                  "${filterListe![i]}",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
   }
 }

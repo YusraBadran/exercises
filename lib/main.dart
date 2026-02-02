@@ -1,4 +1,5 @@
 import 'package:exercises/pages/PopupMenuButton.dart';
+import 'package:exercises/pages/SearchDelegate.dart';
 import 'package:exercises/pages/about.dart';
 import 'package:exercises/pages/home.dart';
 import 'package:exercises/pages/list.dart';
@@ -11,7 +12,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PopMenu(),
+      home: search(),
       routes: {
         "about": (context) => About(),
         "Pageview": (context) => Pageview(),
